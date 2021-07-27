@@ -1,6 +1,38 @@
 # Infrastructure
+<!-- MarkdownTOC -->
 
-## Summary:
+- [Summary](#summary)
+- [Intro to Runway](#intro-to-runway)
+    - [Terraform and Runway](#terraform-and-runway)
+        - [Terraform layout](#terraform-layout)
+    - [CloudFormation engin and Runway](#cloudformation-engin-and-runway)
+- [Runway](#runway)
+    - [Modules](#modules)
+    - [tfstate.cfn](#tfstate)
+    - [Prerequisites](#prerequisites)
+        - [Python](#python)
+            - [Windows](#windows)
+            - [MacOS](#macos)
+            - [Linux](#linux)
+                - [Ubuntu](#ubuntu)
+        - [AWS Cli](#aws-cli)
+            - [Windows](#windows-1)
+            - [MacOS](#macos-1)
+            - [Linux](#linux-1)
+                - [Ubuntu](#ubuntu-1)
+        - [Runway and dependencies](#runway-and-dependencies)
+        - [Terraform \(via TFEnv\)](#terraform-via-tfenv)
+            - [MacOS](#macos-2)
+            - [Linux](#linux-2)
+        - [Other](#other)
+    - [Deployments](#deployments)
+        - [Interactive Deployments](#interactive-deployments)
+        - [Non-Interactive Targeted Deployments](#non-interactive-targeted-deployments)
+        - [Non-Interactive Deployments](#non-interactive-deployments)
+
+<!-- /MarkdownTOC -->
+
+## Summary
 Infrastructure as Code using runway, CloudFormation and Terraform to launch into AWS.
 
 ## Intro to Runway
