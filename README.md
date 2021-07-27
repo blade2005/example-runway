@@ -1,7 +1,10 @@
 # Infrastructure
+
+## Summary
+Infrastructure as Code using runway, CloudFormation and Terraform to launch into AWS.
+
 <!-- MarkdownTOC -->
 
-- [Summary](#summary)
 - [Intro to Runway](#intro-to-runway)
     - [Terraform and Runway](#terraform-and-runway)
         - [Terraform layout](#terraform-layout)
@@ -31,9 +34,6 @@
         - [Non-Interactive Deployments](#non-interactive-deployments)
 
 <!-- /MarkdownTOC -->
-
-## Summary
-Infrastructure as Code using runway, CloudFormation and Terraform to launch into AWS.
 
 ## Intro to Runway
 [Runway](https://docs.onica.com/projects/runway/en/latest/index.html) is configured for deployments and modules. A deployment defines modules and options that affect the modules.
