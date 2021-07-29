@@ -1,7 +1,8 @@
-# Infrastructure
+# Venterra Realty Infrastructure as Code Repository
 
 ## Summary
-Infrastructure as Code using runway, CloudFormation and Terraform to launch into AWS.
+Infrastructure as Code for Venterra Realty using runway, CloudFormation and Terraform to launch into AWS.
+
 
 <!-- MarkdownTOC -->
 
@@ -11,7 +12,7 @@ Infrastructure as Code using runway, CloudFormation and Terraform to launch into
     - [CloudFormation engin and Runway](#cloudformation-engin-and-runway)
 - [Runway](#runway)
     - [Modules](#modules)
-    - [tfstate.cfn](#tfstate)
+    - [tfstate.cfn](#tfstatecfn)
     - [Prerequisites](#prerequisites)
         - [Python](#python)
             - [Windows](#windows)
@@ -30,8 +31,9 @@ Infrastructure as Code using runway, CloudFormation and Terraform to launch into
         - [Other](#other)
     - [Deployments](#deployments)
         - [Interactive Deployments](#interactive-deployments)
-        - [Non-Interactive Targeted Deployments](#non-interactive-targeted-deployments)
+        - [Mostly Non-Interactive Targeted Deployments](#mostly-non-interactive-targeted-deployments)
         - [Non-Interactive Deployments](#non-interactive-deployments)
+        - [Non-Interactive Targeted Deployments](#non-interactive-targeted-deployments)
 
 <!-- /MarkdownTOC -->
 
@@ -122,7 +124,7 @@ core.tf/
 
 CloudFormation engin(CFNGin) is a derirative of [Stacker](https://stacker.readthedocs.io/en/latest/) which expands on the functionality Stacker has but has diverged.
 
-CFNGin allows you to deploy Cloudformation from JSON/YAML template files but also frol [Troposphere](https://troposphere.readthedocs.io/en/latest/) blueprints.
+CFNGin allows you to deploy Cloudformation from JSON/YAML template files but also [Troposphere](https://troposphere.readthedocs.io/en/latest/) blueprints (which allow you to take advantage of Python).
 
 ```
 tfstate.cfn/
@@ -142,7 +144,7 @@ The overview is simpler in this use case compared to Terraform. Specifying all t
           - tfstate
     parameters:
       namespace: ${env DEPLOY_ENVIRONMENT}
-      customer: ${REPLACE_ME}
+      customer: venterra
       region: ${env AWS_REGION}
     regions:
       - us-east-2
@@ -169,7 +171,7 @@ This will launch a cloudformation stack with the name of the namespace and the s
 
 ## Runway
 ### Modules
-### tfstate.cfn {#tfstate}
+### tfstate.cfn
 
 This is the only Cloudformation in this repo which bootstraps the state files for Terraform. It launches a s3 bucket and dynamodb table for state locking.
 
@@ -204,8 +206,14 @@ Providing instructions for multiple distributions is out of scope.
 1. navigate in your terminal to the directory of the repo.
 1. `pipenv sync`
     1. [Pipenv](https://pipenv.pypa.io/en/latest/)
+1. Alternatively: Install via npm
+1. Alternatively: Binary download
 
 #### Terraform (via TFEnv)
+TFEnv is a Terraform version manager allowing you to install and select different version of Terraform and is supported within runway. 
+
+Windows doesn't have a neat install method for TFEnv I'd recommend using docker to use runway/tfenv on Windows.
+
 ##### MacOS
 1. `brew install tfenv`
 ##### Linux
@@ -230,10 +238,14 @@ Providing instructions for multiple distributions is out of scope.
 1. If there are multiple modules you will be prompted for which modules or all.
 1. Deployment happens, watch for errors.
 
-#### Non-Interactive Targeted Deployments
+#### Mostly Non-Interactive Targeted Deployments
 1. login to your AWS account using CLI/MFA
 1. `runway deploy -e ${DEPLOY_ENVIRONMENT} --tag ${TAG}`
 
 #### Non-Interactive Deployments
 1. login to your AWS account using CLI/MFA
 1. `runway deploy -e ${DEPLOY_ENVIRONMENT} --ci`
+
+#### Non-Interactive Targeted Deployments
+1. login to your AWS account using CLI/MFA
+1. `runway deploy -e ${DEPLOY_ENVIRONMENT} --ci --tag ${TAG}`
