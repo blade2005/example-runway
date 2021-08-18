@@ -1,4 +1,4 @@
-# Venterra Realty Infrastructure as Code Repository
+# Runway Documentation
 
 ## Summary
 Infrastructure as Code for Venterra Realty using runway, CloudFormation and Terraform to launch into AWS.
