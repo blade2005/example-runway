@@ -1,7 +1,7 @@
 # Runway Documentation
 
 ## Summary
-Infrastructure as Code for Venterra Realty using runway, CloudFormation and Terraform to launch into AWS.
+Infrastructure as Code using runway, CloudFormation and Terraform to launch into AWS.
 
 
 <!-- MarkdownTOC -->
@@ -144,7 +144,7 @@ The overview is simpler in this use case compared to Terraform. Specifying all t
           - tfstate
     parameters:
       namespace: ${env DEPLOY_ENVIRONMENT}
-      customer: venterra
+      customer: ${var customer}
       region: ${env AWS_REGION}
     regions:
       - us-east-2
